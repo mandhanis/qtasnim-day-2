@@ -29,8 +29,8 @@ let data2 = {
     hobby : "painting"
 }
 
-const newData = {...data, ...data2};
-const { street, city } = newData.address;
-const message = 'I live in ' + city + ' on ' + street + '.';
+let newData = {...data, ...data2};
+let { street, city } = newData.address;
+let message = 'I live in ' + city + ' on ' + street + '.';
 console.log(newData);
 console.log(message);
