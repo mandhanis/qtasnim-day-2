@@ -13,9 +13,6 @@ function seleksiNilai(nilaiAwal, nilaiAkhir, dataArray){
             console.log(selection);
         }      
     }
-
-    
-
 }
 
 seleksiNilai(2, 12, [4, 6, 10, 5, 11]); 
