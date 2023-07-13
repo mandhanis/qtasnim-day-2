@@ -21,11 +21,12 @@ const getCekHariKerja = () => {
     let inputHari = "senin";
     cekHariKerja(inputHari)
         .then((hasil) => { 
-        // menampilkan hasil jika promise nya berhasil / resolved
+            console.log("Hari " + hasil + " adalah hari kerja");
+            // menampilkan hasil jika promise nya berhasil / resolved
         })
         .catch((error) => {
-        console.log("Hari " + inputHari + error.message); 
-        // menampilkan pesan error jika promise gagal / rejected
+            console.log("Hari " + inputHari + error.message); 
+            // menampilkan pesan error jika promise gagal / rejected
         });
   };
   
@@ -33,6 +34,6 @@ const getCekHariKerja = () => {
     getCekHariKerja(); 
     // Memanggil fungsi getCekHariKerja untuk memulai operasi asyncronus
   } catch (error) {
-    console.log(error.message); 
-    // menangkap semua error dan menampilkan pesan error
+        console.log(error.message); 
+        // menangkap semua error dan menampilkan pesan error
   }
