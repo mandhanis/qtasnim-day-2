@@ -1,0 +1,5 @@
+404 – Not Found (pages / data yang dicari tidak ditemukan)
+302 – Found (data / page yang dicari ditemukan)
+403 – Forbidden (dilarang / tidak dapat diakses) 
+505 – HTTP Version Not Supported (server tidak mendukung versi anda / kudet)
+202 – Everythings is ok (web bekerja dengan semestinya / lancar)
