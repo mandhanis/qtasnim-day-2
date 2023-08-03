@@ -1,11 +1,11 @@
 const {
   getUsers,
-  postUser,
-  updateUser,
-  deleteUser,
   getUserName,
   getUserEmail,
   getUserPhone,
+  postUser,
+  updateUser,
+  deleteUser,
 } = require("../models/users");
 const bcrypt = require("bcrypt");
 

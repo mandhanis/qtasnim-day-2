@@ -33,8 +33,7 @@
               <% }) %>
             </div>
             <script>
-              // Tampilkan pesan flash message dan atur waktu penghilangan
-              window.onload = function() {
+                window.onload = function() {
                 const message = document.getElementById("errorMessage");
                 message.style.display = "block";
                 setTimeout(() => {
@@ -45,7 +44,7 @@
           <% } %>
         <div class="container-fluid px-5 pt-5">
             <div class="bg-white rounded shadow p-4 container-fluid" style="width: 30%;" >
-                <h1 class="mb-4 text-primary">Register</h1>
+                <h1 class="mb-4 text-success">Register</h1>
                 <form action="/users/register" class="form" method="post">
                     
                     <div class="mb-3">
