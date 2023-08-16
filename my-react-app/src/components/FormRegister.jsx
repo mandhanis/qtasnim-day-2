@@ -1,15 +1,15 @@
 /** @format */
 
 import React from "react";
-import '../style/Register.css'
+import '../style/Login.css'
 
 
 export default function FormRegister() {
   return (
-    <div className="form-session">
+    <div className="form-session-register">
       <div className='title'>
-        <h2 style={{color: "#FC6847"}} >Let’s Get Started !</h2>
-        <h5 className='subtitle'>Create new account to access all features</h5>
+        <h4 style={{color: "#FC6847"}} >Let’s Get Started !</h4>
+        <h6 className='subtitle'>Create new account to access all features</h6>
       </div>
 
       <div className='form-register'>

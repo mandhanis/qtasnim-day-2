@@ -1,0 +1,38 @@
+.new-section{
+    margin: 5rem 0;
+    margin-bottom: 12rem;
+}
+.orange-stuff{
+    width: 400px;
+    height: 500px;
+    margin-left: -5rem;
+    margin-top: 4rem;
+    background-color: #FC6847;
+    border: 2px solid #FC6847;
+    border-radius: 8px;
+
+}
+
+.new-img{
+    width: 450px;
+    height: 500px;
+    z-index: 2;
+    margin-left: 6rem;
+    margin-top: -28rem;
+    border-radius: 8px;
+  transition: 0.5s;
+  }
+  img.new-img:hover{
+    width: 450px;
+    height: 500px;
+    z-index: 2;
+    margin-left: 6rem;
+    margin-top: -29rem;
+    border-radius: 8px;
+  }
+
+.new-section .fav-sub{
+    width: 30%;
+    margin-top: -24rem;
+    margin-left: 50rem;
+}

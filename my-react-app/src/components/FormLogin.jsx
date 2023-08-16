@@ -6,7 +6,7 @@ import '../style/Login.css'
 
 export default function FormLogin() {
   return (
-    <div className="form-session">
+    <div className="form-session-login">
       <div className='title'>
         <h2 style={{color: "#FC6847"}} >Welcome !</h2>
         <h5 className='subtitle'>Log in into your exiting account</h5>
@@ -31,7 +31,7 @@ export default function FormLogin() {
           </div>
             <p className="sub-p">Don't have any account?
               <span>
-                <a href="/users/login">Sign in here</a>
+                <a href="/register">Sign in here</a>
               </span>
             </p>
         </form>
