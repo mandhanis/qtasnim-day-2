@@ -3,16 +3,21 @@ import Card from 'react-bootstrap/Card';
 import './RecipeCard.css'
 
 const RecipeCard = (props) => {
-    
-    return (
+    const { data } = props;
+    const { name, img_url } = data;
 
-    <Card style={{width: 200, height:300}}>
-      <Card.Img variant="top" src={props.image} className="card-img" />
-      <Card.Body className="title-card"> 
-        <Card.Title >{props.name} </Card.Title>
-      </Card.Body>
-    </Card>
-    )
-}
+    return (
+      <Card style={{ width: 200, height: 300 }}>
+        <Card.Img
+          variant="top"
+          src={img_url}
+          className="card-img"
+        />
+        <Card.Body className="title-card">
+          <Card.Title>{name}</Card.Title>
+        </Card.Body>
+      </Card>
+    );
+};
 
 export default RecipeCard;

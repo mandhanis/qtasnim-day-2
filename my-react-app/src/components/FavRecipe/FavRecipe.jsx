@@ -1,7 +1,7 @@
 import React from "react";
 import Fav from '../../style/fav-img.jpg'
 import Title from "../Title/Title";
-import TitleWithButton from "../TitleWithButton/TitleWithButton";
+import TitleWithButton from "../Button/TitleWithButton";
 
 const FavRecipe = (props) => {
     

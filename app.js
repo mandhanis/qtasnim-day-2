@@ -9,9 +9,11 @@ const PORT = process.env.PORT || 4000;
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require("passport")
+const initializePassport = require("./passportConfig"); // The code you provided
+// 
+// Initialize Passport
+initializePassport(passport);
 
-const initializePassport = require("./passportConfig")
-// const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const commentRouter = require('./routes/comments');
 const recipeRouter = require('./routes/recipes');
@@ -19,7 +21,7 @@ const recipeRouter = require('./routes/recipes');
 initializePassport(passport)
 
 app.use(session({
-  secret: 'your-secret-key',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false
 }));
@@ -27,11 +29,23 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});  
+
 app.use(flash());
 
 app.use(cors({
-  origin: 'http://127.0.0.1:4000/'
+  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:4000', 'http://127.0.0.1:4000' ],
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PUT'], 
+  allowedHeaders: ['Content-Type', 'Authorization'], 
 }));
+
 
 app.use(bodyParser.json());
 app.get("/", (req, res) => {
@@ -54,6 +68,11 @@ app.use('/', usersRouter);
 app.use('/', commentRouter);
 app.use('/', recipeRouter);
 
+app.post("/users/login", passport.authenticate("local"), (req, res) => {
+  res.json({ user: req.user, token: req.user.token });
+});
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -61,22 +80,22 @@ app.get("/users/register", (req, res) => {
   res.render("register");
 });
 
-app.get("/users/login", (req, res) => {
-  res.render("login");
-});
+// app.get("/users/login", (req, res) => {
+//   res.render("login");
+// });
 
-app.get("/users/dashboard", (req, res) => {
-  res.render("dashboard", { user: "auran" });
-});
+// app.get("/users/dashboard", (req, res) => {
+//   res.render("dashboard", { user: "auran" });
+// });
 
 
-app.post("/users/login", 
-passport.authenticate("local", {
-  successRedirect: "/users/dashboard",
-  failureRedirect: "/users/login",
-  failureFlash: true
-})
-)
+// app.post("/users/login", 
+// passport.authenticate("local", {
+//   successRedirect: "/users/dashboard",
+//   failureRedirect: "/users/login",
+//   failureFlash: true
+// })
+// )
 
 app.use(function(req, res, next) {
   next(createError(404));
@@ -90,8 +109,21 @@ app.use(function(err, req, res) {
   res.render('error');
 }); 
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Credentials', 'true'); // Allow sending cookies
 
-app.listen(PORT, () => {
+  if (req.method === 'OPTIONS') {
+    // Handle preflight requests
+    res.status(200).end();
+  } else {
+    next();
+  }
+});
+
+app.listen(4000, () => {
   console.log(`Server Running on port ${PORT}`);
 });
 

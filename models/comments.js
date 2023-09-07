@@ -1,4 +1,4 @@
-const { pool } = require("../connect");
+  const { pool } = require("../connect");
 
 exports.getComments = async () => {
   try {
@@ -39,11 +39,11 @@ exports.updateComment = async (text, id) => {
   }
 };
 
-exports.deleteComment = async (id) => {
+exports.deleteComment = async (commentId) => {
   try {
     const result = await pool.query(
       "DELETE FROM comments WHERE id = $1 RETURNING *",
-      [id]
+      [commentId]
     );
     if (result) {
       return result.rows;
@@ -53,10 +53,11 @@ exports.deleteComment = async (id) => {
   }
 };
 
-exports.showComment = async () => {
+exports.showComment = async (recipe_id) => {
   try {
     const result = await pool.query(
-      "SELECT users.name as user, comments.text FROM comments INNER JOIN users ON comments.commenter_id = users.id"
+      "SELECT users.name as user, users.img_url, comments.text FROM comments INNER JOIN users ON comments.commenter_id = users.id where recipe_id = $1",
+      [recipe_id]
     );
     if (result) {
       return result.rows;

@@ -6,7 +6,7 @@ router.get('/comments/get',controllerComment.getAllComment)
 router.post('/comments/post', controllerComment.inputComment)
 router.put('/comments/edit/:id', controllerComment.modifiedComment)
 router.delete('/comments/delete/:id', controllerComment.dropComment)
-router.get('/comments/show',controllerComment.showRecipeComment)
+router.get('/comments/show/:recipe_id',controllerComment.showRecipeComment)
 
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });

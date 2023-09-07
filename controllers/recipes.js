@@ -6,6 +6,8 @@ const {
   searchByName,
   newRecipes,
   recipeById,
+  getRecipeById,
+  selectBySender,
 } = require("../models/recipes");
 
 
@@ -20,10 +22,27 @@ exports.getAllRecipe = async (req, res) => {
   }
 };
 
+exports.getRecipeByIdController = async (req, res) => {
+  const recipeId = req.params.id;
+
+  try {
+    const recipe = await getRecipeById(recipeId);
+    if (recipe) {
+      res.json(recipe);
+    } else {
+      res.status(404).json({ message: "Recipe not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 exports.inputRecipe = async (req, res) => {
   try {
-    const { name, ingredients, sender_id } = req.body;
-    const data = await postRecipe(name, ingredients, sender_id);
+    const { name, ingredients, sender_id, img_url, vid_url, description } = req.body;
+    const data = await postRecipe(name, ingredients, sender_id, img_url, vid_url, description );
     if (data) {
       res.status(200).send(data);
     }
@@ -35,8 +54,8 @@ exports.inputRecipe = async (req, res) => {
 exports.modifiedRecipe = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, ingredients } = req.body;
-    const data = await updateRecipe(name, ingredients, id);
+    const { name, ingredients, img_url, vid_url } = req.body;
+    const data = await updateRecipe(name, ingredients, img_url, vid_url, id);
     if (data) {
       res.status(200).send(data);
     }
@@ -91,3 +110,15 @@ exports.showRecipeComment = async (req, res) => {
     res.send(error);
   }
 };
+
+exports.myRecipe = async (req, res) => {
+  try {
+    const { sender_id } = req.params;
+    const data = await selectBySender(sender_id);
+    if (data) {
+      res.status(200).send(data);
+    }
+  } catch (error) {
+    res.send(error);
+  }
+}

@@ -31,13 +31,14 @@ exports.inputComment = async (req, res) => {
   } catch (error) {
     res.send(error);
   }
+
 };
 
 exports.modifiedComment = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { commentId } = req.params;
     const { text } = req.body;
-    const data = await updateComment(text, id);
+    const data = await updateComment(text, commentId);
     if (data) {
       res.status(200).send(data);
     }
@@ -60,7 +61,8 @@ exports.dropComment = async (req, res) => {
 
 exports.showRecipeComment = async (req, res) => {
   try {
-    const show = await showComment();
+    const { recipe_id } = req.params;
+    const show = await showComment(recipe_id);
     if (show) {
       res.status(200).send(show);
     }

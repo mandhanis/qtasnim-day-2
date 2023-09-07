@@ -1,15 +1,18 @@
 import React from "react";
+import Youtube from "../components/Video/Youtube";
+import Navbar from "../components/Navbar/Navbar";
 
 
 const Video = (props) => {
     
     return (
         <>
+        <Navbar />
         <div className="d-flex">
 
         <div className="orange-thing"></div>
         <div className="container">
-            <img src="https://i.pinimg.com/564x/ce/12/3d/ce123df4c1f01505ecee6cab101dbc46.jpg" className="pan-vid" alt="" />
+            <Youtube />
         </div>
         </div>
         </>

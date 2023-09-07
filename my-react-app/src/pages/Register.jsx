@@ -9,7 +9,7 @@ export default function Register() {
     <div className='d-flex'>
         <div className='grid-1'>
           <div className='overlay'>
-          <img src={Logo} alt="Logo" className='logojipen' />;
+          <img src={Logo} alt="Logo" className='logojipen' />
           </div>
         </div>
         <div className='grid-2'>
